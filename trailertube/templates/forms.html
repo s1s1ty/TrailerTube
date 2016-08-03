@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+<div class ='col-sm-5 col-sm-offset-3'>
+    <h1>{{ title }}</h1><hr>
+
+    <form method="POST" action="">{% csrf_token %}
+      {{form|crispy}}
+        <div class="pull-left">
+            <input type="submit" class="btn btn-primary" value="{{title}}"/><br>
+            {% if title == "Login" %}
+                <h5>Don’t have an account?<a href="{% url 'join' %}"> Join </h5>
+            {% elif title == "Join" %}
+                <h5>Already have an account?<a href="{% url 'login' %}"> Log in</a></h5>
+            {% endif %}
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
