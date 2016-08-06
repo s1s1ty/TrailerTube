@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 
-from .forms import VideoForm
+from .forms import VideoForm, MessageForm
 from .models import Trailer
 
 def Video(request):
@@ -40,6 +40,19 @@ def add_video(request):
         "title": "Upload",
     }
     return render(request, 'forms.html', context)
+
+def message(request):
+    form = MessageForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponse("Message Sent Successfully")
+    context = {
+        "form": form,
+        "title": "Contact Us",
+
+    }
+    return render(request, "forms.html", context)
 
 def like_update(request, id=None):
     new = Trailer.objects.order_by('-id')
