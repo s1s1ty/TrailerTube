@@ -51,19 +51,23 @@
 <div class="container">
         <div class="row">
             {% for ob in video %}
+            {% if ob.approved %}
                 <div class="col-xs-6 col-md-3">
 
                     <div class="thumbnail">
                       <div class="embed-responsive embed-responsive-4by3">
+
                         {{ob.embed_link|safe}}
                         </div>
                         <div class="caption">
                             <a><strong>{{ob.title}}</strong></a><br>
                             <strong>Release: {{ob.release}}</strong>
                         </div>
+
                     </div>
 
                 </div>
+            {% endif %}
             {% endfor %}
         </div>
         <nav>
