@@ -1,5 +1,5 @@
 from django import forms
-from .models import Trailer
+from .models import Trailer, Message
 
 class VideoForm(forms.ModelForm):
     class Meta:
@@ -10,4 +10,14 @@ class VideoForm(forms.ModelForm):
             "release",
             "embed_link",
 
+        ]
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = [
+            "name",
+            "email",
+            "message",
         ]
