@@ -18,13 +18,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from trailer.views import Video, add_video
+from trailer.views import Video, add_video, message
 from accounts.views import login_view, register_view, logout_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Video, name='video'),
     url(r'^upload/', add_video, name='upload'),
+    url(r'^message/', message, name='message'),
     url(r'^login/', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
     url(r'^join/', register_view, name='join'),
