@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -45,6 +46,7 @@
       </ul>
           {% else %}
         <li><a href="{% url 'upload' %}" class="btn btn-success" role="button" title="Upload Your Video"><span class="glyphicon glyphicon-cloud-upload"><strong> Upload</strong></span></a></li>
+        <li><a href="{% url 'message' %}"><span class="glyphicon glyphicon-envelope"><strong> Message</strong></span></a></li>
         <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"><strong> Logout</strong></span></a></li>
           {% endif %}
       </ul>
