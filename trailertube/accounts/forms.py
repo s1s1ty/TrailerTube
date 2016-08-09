@@ -8,18 +8,19 @@ User = get_user_model()
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=200)
     password = forms.CharField(widget=forms.PasswordInput)
-    
+    def authenticate(self):
+        username = self.cleaned_data["username"]
+        password = self.cleaned_data["password"]
+        if username and password:
+            return authenticate(username=username, password=password)
     def clean(self, *args, **kwargs):
-    username = self.cleaned_data.get("username")
-    password = self.cleaned_data.get("password")
-    if username and password:
-        user = authenticate(username=username, password=password)
+        user = self.authenticate()
         if not user:
             raise forms.ValidationError("This User doesnot Exist or Incorrect Password.")
         if not user.is_active:
             raise forms.ValidationError("This user is no longer active.")
-    return super(LoginForm, self).clean(*args, **kwargs)
-
+        return super(LoginForm, self).clean(*args, **kwargs)
+        
 class JoinForm(forms.ModelForm):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
