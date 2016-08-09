@@ -5,9 +5,7 @@ from .forms import LoginForm, JoinForm
 def login_view(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password']
-        user = authenticate(username=username, password=password)
+        user =form.authenticate()
         if user is not None:
             login(request, user)
             return redirect("/")
